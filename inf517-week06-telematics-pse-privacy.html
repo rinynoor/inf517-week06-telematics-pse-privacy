@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>inf517-week06-telematics-pse-privacy — Telematika, PSE, Platform Digital, Privasi & Tanggung Jawab</title>
+<meta name="description" content="Interactive self-paced learning module for INF517 Cybersecurity Law & Governance.">
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#62708a;--line:#dce3ee;
+  --navy:#152b4f;--blue:#2563eb;--blue2:#eaf1ff;--green:#15803d;--greenbg:#ecfdf3;
+  --amber:#a16207;--amberbg:#fffbeb;--purple:#7e22ce;--purplebg:#faf5ff;--red:#b42318;--redbg:#fff1f2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+button,a{font:inherit}
+a{color:var(--blue)}
+header{background:linear-gradient(135deg,#12213b,#1e3a67);color:white;padding:28px 22px}
+.head{max-width:1180px;margin:auto}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8;font-weight:800}
+header h1{margin:.3rem 0 .25rem;font-size:clamp(1.65rem,4vw,2.55rem);line-height:1.15}
+header p{margin:.4rem 0 0;max-width:850px;color:#dce7f8}
+.layout{max-width:1180px;margin:22px auto;padding:0 18px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:20px}
+aside{align-self:start;position:sticky;top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 8px 28px rgba(20,40,80,.06)}
+.progress-track{height:8px;background:#e8edf5;border-radius:99px;overflow:hidden;margin:10px 0 4px}
+#progressBar{height:100%;background:var(--blue);width:0;transition:.25s}
+#progressText{font-size:.76rem;color:var(--muted)}
+#nav{display:grid;gap:4px;margin-top:13px;max-height:62vh;overflow:auto;padding-right:3px}
+.navbtn{border:0;background:transparent;text-align:left;padding:8px 9px;border-radius:9px;color:#44516a;font-size:.78rem;cursor:pointer}
+.navbtn:hover,.navbtn.active{background:var(--blue2);color:#153d8f;font-weight:750}
+.restart{width:100%;margin-top:12px;border:1px solid var(--line);background:white;border-radius:10px;padding:9px;cursor:pointer}
+main{min-width:0}
+.page{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,38px);box-shadow:0 8px 28px rgba(20,40,80,.05);min-height:580px}
+h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.25;margin:.25rem 0 .8rem}
+h3{margin-top:1.55rem;margin-bottom:.55rem;line-height:1.3}
+.lead{font-size:1.08rem;line-height:1.8}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.tag{border:1px solid var(--line);border-radius:99px;padding:4px 9px;font-size:.72rem;font-weight:750;color:#526078;background:#fff}
+.callout{border:1px solid var(--line);border-left:5px solid var(--blue);background:#f8faff;border-radius:12px;padding:14px 16px;margin:18px 0}
+.callout.law{border-left-color:var(--green);background:var(--greenbg)}
+.callout.license{border-left-color:var(--purple);background:var(--purplebg)}
+.callout.policy{border-left-color:var(--amber);background:var(--amberbg)}
+.callout.warning{border-left-color:var(--red);background:var(--redbg)}
+.callout b:first-child{display:block;margin-bottom:4px}
+.grid2,.grid3{display:grid;gap:12px}
+.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mini{border:1px solid var(--line);border-radius:13px;padding:14px;background:#fff}
+.mini b{display:block;margin-bottom:3px}
+.small{font-size:.9rem;color:#4c5a70}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.flow span{border:1px solid var(--line);padding:6px 9px;border-radius:99px;font-size:.75rem;font-weight:750;background:#fff}
+.flow i{font-style:normal;color:#8b97aa}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{border:1px solid var(--line);padding:9px;vertical-align:top;text-align:left}
+th{background:#f4f7fb}
+.tablewrap{overflow:auto;margin:13px 0}
+.quiz{border:1px solid var(--line);border-radius:14px;padding:16px;margin:17px 0}
+.quiz-title{font-weight:750;margin-bottom:10px}
+.options{display:grid;gap:8px}
+.option{border:1px solid var(--line);background:white;border-radius:10px;padding:11px 12px;text-align:left;cursor:pointer;color:var(--ink)}
+.option:hover:not(:disabled){border-color:#8aacee;background:#f8fbff}
+.option:disabled{cursor:default;opacity:.76}
+.option.selected{outline:2px solid var(--blue);opacity:1}
+.option.correct{border-color:#68b984;background:#effbf3}
+.option.wrong{border-color:#e19a94;background:#fff4f3}
+.feedback{display:none;margin-top:10px;border-radius:10px;padding:11px 12px;background:#f3f6fa;font-size:.9rem}
+.feedback.show{display:block}
+.navcontrols{display:flex;justify-content:space-between;gap:12px;margin:15px 0 30px}
+.ctrl{border:1px solid var(--line);background:white;border-radius:11px;padding:10px 16px;font-weight:700;cursor:pointer}
+.ctrl.primary{background:var(--blue);color:white;border-color:var(--blue)}
+.ctrl:disabled{opacity:.4;cursor:not-allowed}
+.score{padding:15px;border-radius:12px;background:#eef4ff;font-weight:800;margin-top:18px}
+.ref{border:1px solid var(--line);border-radius:13px;padding:14px;margin:10px 0}
+footer{max-width:1180px;margin:0 auto 30px;padding:0 18px;color:var(--muted);font-size:.82rem}
+@media(max-width:820px){.layout{grid-template-columns:1fr}aside{position:static}#nav{max-height:none;grid-template-columns:repeat(2,minmax(0,1fr))}.grid2,.grid3{grid-template-columns:1fr}.page{min-height:0}}
+@media(max-width:430px){#nav{grid-template-columns:1fr}.navcontrols{flex-direction:column}.ctrl{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head">
+    <div class="eyebrow">INF517 · Cybersecurity Law & Governance · Week 06</div>
+    <h1>Telematika, PSE, Platform Digital, Privasi & Tanggung Jawab</h1>
+    <p>Pembelajaran mandiri interaktif untuk memetakan digital service, PSE, platform, Data Pribadi, vendor, evidence, responsibility, risk, dan governance action.</p>
+  </div>
+</header>
+
+<div class="layout">
+<aside>
+  <b>Alur Belajar</b>
+  <div class="progress-track"><div id="progressBar"></div></div>
+  <div id="progressText"></div>
+  <nav id="nav" aria-label="Module sections"></nav>
+  <div class="callout policy small" style="margin:13px 0 0"><b>Alur belajar</b>Learn → Read Law → Interpret License → Investigate → Decide → Check → Audit</div>
+  <button class="restart" id="restart" type="button">Mulai ulang modul</button>
+</aside>
+
+<main>
+<section class="page" id="screen" aria-live="polite"></section>
+<div class="navcontrols">
+  <button class="ctrl" id="prev" type="button">← Sebelumnya</button>
+  <button class="ctrl primary" id="next" type="button">Lanjut →</button>
+</div>
+</main>
+</div>
+
+<footer>
+  Modul pembelajaran INF517 Week 06. Gunakan official/primary sources dan applicable law yang ditautkan saat mengerjakan tugas.
+</footer>
+
+<script>
+const tag=x=>`<span class="tag">${x}</span>`;
+const tags=a=>`<div class="tags">${a.map(tag).join('')}</div>`;
+const callout=(type,title,text)=>`<div class="callout ${type}"><b>${title}</b><div>${text}</div></div>`;
+const quiz=(id,title,options,correct,feedback)=>`
+<div class="quiz" data-q="${id}" data-c="${correct}">
+ <div class="quiz-title">${title}</div>
+ <div class="options">${options.map((x,i)=>`<button class="option" type="button" data-a="${i}"><b>${String.fromCharCode(65+i)}.</b> ${x}</button>`).join('')}</div>
+ <div class="feedback"></div>
+ <template>${feedback}</template>
+</div>`;
+
+const pages=[
+{title:"Start Here",html:()=>`
+${tags(["SELF-PACED","45–60 MIN","CASE-BASED","PORTFOLIO"])}
+<h2>Siapa yang Bertanggung Jawab atas Layanan Digital?</h2>
+<p class="lead">Anda berperan sebagai <b>Digital Platform Governance Analyst</b>. Sebuah layanan digital dapat melibatkan pemilik platform, cloud provider, payment service, analytics vendor, pengguna, dan berbagai aliran Data Pribadi. Tugas Anda adalah memetakan <b>peran, kewajiban, evidence, risk, dan responsibility</b>—bukan sekadar menyalahkan “IT”.</p>
+${callout("","🎯 Pertanyaan Utama","Ketika sebuah platform digital mengumpulkan data, menggunakan vendor, mengalami gangguan, atau menghadapi privacy incident—<b>siapa bertanggung jawab atas apa, berdasarkan fakta dan aturan yang mana?</b>")}
+<h3>Capaian Pembelajaran</h3>
+<ul>
+<li>Menjelaskan konsep <b>telematika, Sistem Elektronik, PSE, dan platform digital</b>.</li>
+<li>Mengidentifikasi aktor dan hubungan tanggung jawab dalam digital service ecosystem.</li>
+<li>Membedakan fungsi <b>UU ITE, PP 71/2019, aturan PSE Lingkup Privat, dan UU PDP</b>.</li>
+<li>Membedakan <b>Data Pribadi, Subjek Data Pribadi, Pengendali, dan Prosesor</b>.</li>
+<li>Menganalisis vendor/cloud responsibility tanpa menganggap outsourcing memindahkan seluruh tanggung jawab.</li>
+<li>Menyusun rekomendasi berbasis <b>facts, evidence, law/rule, risk, dan responsibility</b>.</li>
+</ul>
+${callout("policy","Framework Week 06","Gunakan: <b>CONTEXT → ISSUE → ACTOR/ROLE → DATA/SYSTEM → EVIDENCE → LAW/RULE → ANALYSIS → RISK → RESPONSIBILITY → ACTION.</b>")}
+`},
+
+{title:"Telematika",html:()=>`
+${tags(["CONCEPT","DIGITAL ECOSYSTEM"])}
+<h2>1 · Telematika: Melihat Layanan sebagai Ekosistem</h2>
+<p class="lead">Dalam Week 06, telematika digunakan sebagai cara melihat keterhubungan <b>telecommunication, informatics, digital systems, data, users, platforms, dan services</b>. Analisis hukum tidak berhenti pada aplikasi yang terlihat di layar.</p>
+<div class="grid2">
+<div class="mini"><b>User Layer</b><span class="small">Pengguna, account, consent/notice, content, complaint, dan user rights.</span></div>
+<div class="mini"><b>Platform Layer</b><span class="small">Website/app, business process, Terms, moderation, customer service.</span></div>
+<div class="mini"><b>Infrastructure Layer</b><span class="small">Cloud, hosting, network, database, authentication, third-party services.</span></div>
+<div class="mini"><b>Governance Layer</b><span class="small">Law, regulation, contract, privacy governance, evidence, audit, accountability.</span></div>
+</div>
+${callout("","Cara berpikir","Jangan bertanya hanya: <i>“Aplikasinya error karena siapa?”</i> Tanyakan juga: <b>layanan apa, siapa aktornya, sistem/data apa yang terlibat, hubungan kontraknya apa, kewajibannya apa, dan evidence apa yang tersedia?</b>")}
+${quiz("q1","Sebuah aplikasi pendidikan memakai cloud dan payment gateway. Apa langkah analisis awal yang paling tepat?",["Langsung menyalahkan cloud provider.","Petakan layanan, aktor, sistem, data, hubungan, dan evidence sebelum menentukan responsibility.","Anggap seluruh tanggung jawab ada pada pengguna."],1,"Digital service harus dilihat sebagai ekosistem. Responsibility ditentukan setelah peran dan fakta dipetakan.")}
+`},
+
+{title:"Sistem Elektronik & PSE",html:()=>`
+${tags(["PSE","PP 71/2019","PRIVATE SCOPE"])}
+<h2>2 · Sistem Elektronik dan PSE</h2>
+<p class="lead"><b>Penyelenggara Sistem Elektronik (PSE)</b> bukan sekadar nama lain untuk “perusahaan teknologi”. Analisis dimulai dari definisi dan aktivitas penyelenggaraan Sistem Elektronik.</p>
+${callout("law","⚖ Regulatory anchor","PP 71/2019 mengatur Penyelenggaraan Sistem dan Transaksi Elektronik (PSTE). Untuk PSE Lingkup Privat, Permenkominfo 5/2020 beserta perubahannya menjadi rujukan penting sesuai scope yang relevan.")}
+<div class="grid2">
+<div class="mini"><b>Sistem Elektronik</b><span class="small">Perhatikan fungsi sistem dalam mempersiapkan, mengumpulkan, mengolah, menganalisis, menyimpan, menampilkan, mengirimkan, dan/atau menyebarkan Informasi Elektronik.</span></div>
+<div class="mini"><b>PSE</b><span class="small">Identifikasi pihak yang menyediakan, mengelola, dan/atau mengoperasikan Sistem Elektronik untuk dirinya dan/atau pihak lain sesuai definisi regulasi.</span></div>
+</div>
+${callout("warning","Jangan shortcut","Jangan menyimpulkan <b>“punya website = pasti seluruh kewajiban PSE X berlaku”</b>. Identifikasi jenis layanan, penyelenggara, lingkup, dan aturan yang benar-benar applicable.")}
+${quiz("q2","Cara terbaik menentukan apakah suatu entitas relevan dianalisis sebagai PSE adalah…",["Melihat apakah logo perusahaan terlihat digital.","Membandingkan fakta penyelenggaraan sistem/layanan dengan definisi dan scope regulasi yang berlaku.","Menganggap semua vendor otomatis PSE utama."],1,"Mulai dari fakta dan definisi, bukan label bisnis.")}
+`},
+
+{title:"Platform Digital",html:()=>`
+${tags(["PLATFORM","ACTORS","RESPONSIBILITY"])}
+<h2>3 · Platform Digital: Siapa Melakukan Apa?</h2>
+<p>Platform dapat menghubungkan banyak aktor. Karena itu, <b>responsibility map</b> lebih berguna daripada satu jawaban “platform yang salah”.</p>
+<div class="flow">${["USER","PLATFORM","VENDOR","CLOUD","PAYMENT","ANALYTICS","SUPPORT"].map((x,i)=>tag(x)+(i<6?'<i>↔</i>':'')).join('')}</div>
+<h3>Pertanyaan investigasi</h3>
+<ul>
+<li>Siapa menyediakan layanan kepada user?</li>
+<li>Siapa menentukan business purpose dan aturan layanan?</li>
+<li>Siapa mengoperasikan komponen tertentu?</li>
+<li>Data apa mengalir ke pihak mana?</li>
+<li>Apa yang diatur dalam contract/SLA/DPA?</li>
+<li>Siapa menerima complaint dan siapa dapat melakukan remediation?</li>
+</ul>
+${callout("policy","Responsibility ≠ blame","Responsibility mapping bertujuan menentukan <b>obligation, control, decision authority, evidence, dan remediation</b>. Ini berbeda dari sekadar mencari pihak untuk disalahkan.")}
+`},
+
+{title:"Regulatory Map",html:()=>`
+${tags(["LAW LAB","INDONESIA"])}
+<h2>4 · Jangan Campurkan Fungsi Regulasi</h2>
+<div class="tablewrap"><table>
+<tr><th>Regulasi</th><th>Fokus untuk Week 06</th></tr>
+<tr><td><b>UU ITE</b><br>UU 11/2008 sebagaimana diubah, terakhir UU 1/2024</td><td>Kerangka hukum Informasi Elektronik, Dokumen Elektronik, Sistem/Transaksi Elektronik dan isu terkait sesuai ketentuan yang applicable.</td></tr>
+<tr><td><b>PP 71/2019</b></td><td>Penyelenggaraan Sistem dan Transaksi Elektronik; penting untuk membaca kewajiban penyelenggaraan dan tata kelola sistem sesuai scope.</td></tr>
+<tr><td><b>Permenkominfo 5/2020</b> jo. perubahan terkait</td><td>PSE Lingkup Privat, termasuk pendaftaran dan tata kelola tertentu sesuai kategori dan ketentuan yang applicable.</td></tr>
+<tr><td><b>UU 27/2022 PDP</b></td><td>Data Pribadi, hak Subjek Data Pribadi, pemrosesan, Pengendali, Prosesor, transfer, kewajiban, sanksi, dan aspek pelindungan Data Pribadi.</td></tr>
+</table></div>
+${callout("law","Legal reasoning","Jangan menulis empat regulasi sekaligus tanpa fungsi. Gunakan pola: <b>Fact → Issue → Applicable Rule → Application → Responsibility → Action.</b>")}
+${quiz("q3","Kasus membahas tujuan pemrosesan Data Pribadi dan hubungan Pengendali–Prosesor. Regulasi mana yang paling langsung menjadi anchor?",["UU PDP","UU Hak Cipta","Creative Commons"],0,"UU PDP adalah anchor utama untuk isu pemrosesan Data Pribadi; regulasi lain dapat relevan sesuai fakta.")}
+`},
+
+{title:"Privacy & Personal Data",html:()=>`
+${tags(["UU PDP","PRIVACY","PERSONAL DATA"])}
+<h2>5 · Privacy: Mulai dari Data dan Processing</h2>
+<p class="lead">Privacy analysis bukan hanya bertanya “apakah database bocor?”. Pertama, petakan <b>Data Pribadi apa yang diproses, untuk tujuan apa, oleh siapa, sepanjang lifecycle apa, dan dengan dasar/kewajiban apa</b>.</p>
+<div class="flow">${["COLLECT","USE","STORE","SHARE","ACCESS","UPDATE","TRANSFER","DELETE"].map((x,i)=>tag(x)+(i<7?'<i>→</i>':'')).join('')}</div>
+${callout("law","⚖ UU 27/2022 PDP","UU PDP mengatur antara lain jenis Data Pribadi, hak Subjek Data Pribadi, pemrosesan, kewajiban Pengendali dan Prosesor, transfer Data Pribadi, serta sanksi.")}
+<h3>Privacy questions</h3>
+<ul>
+<li>Data apa yang benar-benar diperlukan?</li>
+<li>Siapa Subjek Data Pribadi?</li>
+<li>Apa purpose dari processing?</li>
+<li>Siapa menentukan purpose dan control utama?</li>
+<li>Siapa memproses untuk pihak lain?</li>
+<li>Apakah data dibagikan/ditransfer ke pihak lain?</li>
+<li>Apa notice, record, contract, dan evidence yang tersedia?</li>
+</ul>
+${quiz("q4","Privacy analysis yang kuat dimulai dengan…",["Menganggap semua data sama.","Memetakan jenis data, subjek, tujuan processing, aktor/role, aliran data, rule, dan evidence.","Hanya menghitung jumlah record."],1,"Jumlah record dapat relevan, tetapi legal/governance analysis memerlukan context processing dan roles.")}
+`},
+
+{title:"Controller & Processor",html:()=>`
+${tags(["PENGENDALI","PROSESOR","ROLE MAPPING"])}
+<h2>6 · Pengendali vs Prosesor Data Pribadi</h2>
+<p class="lead">Nama vendor atau posisi kontrak saja belum cukup. Analisis peran harus melihat <b>siapa menentukan tujuan dan melakukan kendali atas pemrosesan</b>, serta siapa memproses Data Pribadi atas nama pihak lain sesuai kerangka UU PDP.</p>
+<div class="grid2">
+<div class="mini"><b>Pengendali Data Pribadi</b><span class="small">Fokus analisis: pihak yang menentukan tujuan dan melakukan kendali pemrosesan sesuai definisi hukum.</span></div>
+<div class="mini"><b>Prosesor Data Pribadi</b><span class="small">Fokus analisis: pihak yang melakukan pemrosesan atas nama Pengendali sesuai definisi dan hubungan yang applicable.</span></div>
+</div>
+${callout("warning","Role is fact-specific","Jangan menetapkan “cloud = processor” atau “platform = controller” hanya dari label. Periksa aktivitas processing, decision authority, purpose, contract, dan facts. Satu ekosistem dapat memiliki pembagian peran yang berbeda untuk processing yang berbeda.")}
+${quiz("q5","Cara paling kuat menentukan controller/processor role adalah…",["Berdasarkan siapa perusahaan terbesar.","Berdasarkan fungsi nyata dalam menentukan tujuan/control dan melakukan processing, lalu cocokkan dengan definisi hukum.","Berdasarkan warna logo vendor."],1,"Role mapping harus fact-specific.")}
+`},
+
+{title:"Vendor & Cloud",html:()=>`
+${tags(["VENDOR","CLOUD","CONTRACT"])}
+<h2>7 · Outsourcing Tidak Menghapus Governance</h2>
+<p>Memakai cloud atau vendor dapat memindahkan pekerjaan operasional tertentu, tetapi tidak otomatis menghapus seluruh legal/governance responsibility organisasi.</p>
+<h3>Vendor review checklist</h3>
+<div class="grid2">
+${["Service scope","Data categories","Processing purpose","Role allocation","Access & authorization","Security obligations","Incident notification","Sub-processors","Location/transfer","Retention & deletion","Audit/evidence","Exit/termination"].map(x=>`<div class="mini">✓ ${x}</div>`).join('')}
+</div>
+${callout("license","Contract layer","Periksa <b>service agreement, SLA, Data Processing Agreement (DPA)</b> atau dokumen relevan. Contract membantu membagi kewajiban operasional, tetapi harus dibaca bersama applicable law.")}
+${quiz("q6","Perusahaan memakai cloud provider. Kesimpulan yang paling tepat adalah…",["Semua tanggung jawab pindah ke cloud provider.","Tidak perlu contract karena cloud provider terkenal.","Petakan peran, data, control, contract/SLA/DPA, applicable law, dan evidence untuk menentukan pembagian responsibility."],2,"Outsourcing bukan shortcut untuk accountability.")}
+`},
+
+{title:"Incident & Responsibility",html:()=>`
+${tags(["INCIDENT","ACCOUNTABILITY"])}
+<h2>8 · Ketika Terjadi Incident</h2>
+<p class="lead">Incident analysis membutuhkan timeline dan evidence. Jangan langsung mengubah dugaan menjadi fakta atau menunjuk pihak yang “bersalah”.</p>
+<div class="flow">${["DETECT","PRESERVE","ASSESS","CONTAIN","NOTIFY/ESCALATE","REMEDIATE","REVIEW"].map((x,i)=>tag(x)+(i<6?'<i>→</i>':'')).join('')}</div>
+<h3>Responsibility questions</h3>
+<ul>
+<li>Apa yang benar-benar terjadi dan kapan?</li>
+<li>Sistem dan Data Pribadi apa yang terdampak?</li>
+<li>Siapa memiliki operational control?</li>
+<li>Siapa mengetahui incident dan kapan?</li>
+<li>Apa kewajiban contract dan applicable law?</li>
+<li>Apa evidence yang harus dipertahankan?</li>
+<li>Siapa berwenang memutuskan notification, remediation, dan escalation?</li>
+</ul>
+${callout("policy","Separate the layers","Pisahkan <b>technical cause</b>, <b>contractual responsibility</b>, <b>regulatory obligation</b>, dan <b>organizational accountability</b>. Keempatnya dapat saling terkait tetapi tidak identik.")}
+`},
+
+{title:"Evidence & Audit Trail",html:()=>`
+${tags(["EVIDENCE","AUDIT TRAIL"])}
+<h2>9 · Evidence: Apa yang Bisa Dibuktikan?</h2>
+<p>Legal/governance conclusion harus dapat direkonstruksi oleh reviewer lain.</p>
+<div class="grid2">
+${[
+["System & service record","Deskripsi sistem, owner, service scope, architecture/context."],
+["PSE evidence","Registration/status/scope evidence bila applicable."],
+["Privacy record","Data inventory, purpose, notices, consent/other basis records as applicable."],
+["Contract evidence","Agreement, SLA, DPA, vendor responsibilities."],
+["Incident record","Timeline, ticket, notification, preserved logs/records."],
+["User communication","Notice, complaint, response, remediation record."],
+["Decision record","Who decided what, when, why, and based on which rule."],
+["Version & date","Regulation/terms/policy/version applicable at relevant time."]
+].map(x=>`<div class="mini"><b>${x[0]}</b><span class="small">${x[1]}</span></div>`).join('')}
+</div>
+${callout("policy","Unknown ≠ failure","Jika case tidak memberikan fakta yang cukup, tulis <b>“Unknown — requires verification”</b>. Lalu sebutkan evidence apa yang harus diminta. Jangan mengarang fakta agar tabel terlihat lengkap.")}
+`},
+
+{title:"Risk & Action",html:()=>`
+${tags(["RISK","ACTION"])}
+<h2>10 · Dari Temuan ke Governance Action</h2>
+<div class="grid3">
+<div class="mini"><b>LOW</b><span class="small">Role, rule, process, dan evidence relatif jelas; control memadai untuk context yang dianalisis.</span></div>
+<div class="mini"><b>MEDIUM</b><span class="small">Ada control/permission tetapi scope, evidence, contract, atau implementation masih perlu diperbaiki.</span></div>
+<div class="mini"><b>HIGH</b><span class="small">Material obligation, role, permission, privacy issue, atau evidence gap belum terselesaikan dan dapat berdampak signifikan.</span></div>
+</div>
+<h3>Possible Actions</h3>
+<div class="flow">${["VERIFY","RESTRICT","UPDATE NOTICE","REVISE CONTRACT","REMEDIATE","HOLD","ESCALATE","DOCUMENT"].map(tag).join('')}</div>
+${callout("","Professional recommendation","Jangan berhenti di “risiko tinggi”. Tulis <b>siapa harus melakukan apa, evidence apa yang harus diperoleh, dan apa kondisi sebelum layanan/processing dapat dilanjutkan.</b>")}
+`},
+
+{title:"Practice Case",html:()=>`
+${tags(["PRACTICE","EDUFLOW"])}
+<h2>11 · Practice Case — EduFlow</h2>
+${callout("","Scenario","EduFlow menyediakan kelas online. User membuat account dengan nama, email, nomor telepon, dan riwayat kelas. EduFlow memakai cloud provider, payment gateway, dan analytics vendor. Tim marketing ingin mengirim seluruh data user ke vendor baru untuk personalisasi. Contract vendor baru belum direview dan tim belum dapat menjelaskan retention period.")}
+${quiz("p1","Langkah pertama yang paling kuat adalah…",["Kirim data dulu karena vendor membantu marketing.","Petakan data, purpose, actor/role, data flow, contract, applicable rule, dan evidence sebelum processing baru dimulai.","Hapus seluruh database."],1,"Perubahan processing membutuhkan context dan role/data-flow review.")}
+${quiz("p2","Karena vendor memproses data, apakah EduFlow otomatis bebas responsibility?",["Ya.","Tidak. Role dan responsibility harus dianalisis berdasarkan fakta, applicable law, dan contract."],1,"Vendor relationship tidak otomatis menghapus responsibility pihak lain.")}
+${quiz("p3","Retention period tidak diketahui. Apa temuan yang tepat?",["Invent angka 5 tahun.","Unknown — requires verification; minta retention rule/schedule dan business/legal basis yang applicable.","Tidak relevan dengan privacy."],1,"Unknown harus dicatat dan ditindaklanjuti dengan evidence request.")}
+${quiz("p4","Apa dokumen yang relevan untuk vendor review?",["Contract/SLA/DPA dan records terkait processing.","Hanya invoice.","Hanya logo vendor."],0,"Contractual evidence membantu memetakan service, processing, obligations, dan responsibility.")}
+`},
+
+{title:"Knowledge Check",html:()=>`
+${tags(["10 QUESTIONS","TARGET 8/10"])}
+<h2>12 · Knowledge Check</h2>
+<p>Jawab berdasarkan framework Week 06, bukan berdasarkan asumsi.</p>
+${[
+["k1","Analisis telematika yang kuat melihat…",["hanya tampilan aplikasi","ekosistem user, platform, system, data, vendor, dan governance","hanya server"],1],
+["k2","PSE sebaiknya ditentukan dengan…",["label marketing perusahaan","fakta penyelenggaraan sistem dan definisi/scope regulasi","jumlah followers"],1],
+["k3","PP 71/2019 terutama relevan dengan…",["Penyelenggaraan Sistem dan Transaksi Elektronik","Creative Commons","hak cipta musik"],0],
+["k4","UU PDP mengatur antara lain…",["Data Pribadi, hak subjek, processing, Pengendali dan Prosesor","hanya password","hanya cybercrime"],0],
+["k5","Controller/processor role ditentukan terutama dari…",["fungsi nyata dan decision/control atas processing","nama jabatan CEO","ukuran vendor"],0],
+["k6","Menggunakan cloud provider berarti…",["semua responsibility otomatis pindah","peran dan responsibility tetap harus dipetakan","privacy law tidak berlaku"],1],
+["k7","Saat incident, analyst sebaiknya…",["langsung menentukan siapa bersalah","bangun facts/timeline/evidence lalu petakan obligations dan responsibility","hapus evidence"],1],
+["k8","Jika fakta penting tidak tersedia…",["buat asumsi sebagai fakta","tulis Unknown — requires verification dan minta evidence","abaikan"],1],
+["k9","Contract/SLA/DPA…",["dapat membantu memetakan kewajiban vendor dan processing, tetapi dibaca bersama applicable law","menggantikan semua undang-undang","tidak relevan"],0],
+["k10","Framework Week 06 yang paling kuat adalah…",["Context → Issue → Actor/Role → Data/System → Evidence → Rule → Analysis → Risk → Responsibility → Action","Guess → Blame → Publish","Vendor → Invoice → Done"],0]
+].map(x=>quiz(x[0],x[1],x[2],x[3],"<b>Review:</b> Kembali ke section terkait jika reasoning ini belum jelas.")).join('')}
+<div class="score" id="score">Knowledge Check: 0 / 10 terjawab</div>
+`},
+
+{title:"Assignment",html:()=>`
+${tags(["INDIVIDUAL","2–3 PAGES","PDF","PORTFOLIO"])}
+<h2>📝 Week 06 Individual Assignment</h2>
+<h3 style="margin-top:0">Digital Platform, PSE & Privacy Responsibility Assessment</h3>
+<p><b>Case: EduConnect Platform</b></p>
+<p>EduConnect adalah platform pembelajaran digital yang menyediakan account mahasiswa, kelas online, pembayaran, forum diskusi, dan analytics. Platform menggunakan cloud provider dan beberapa third-party vendors.</p>
+<p>Dalam satu bulan terakhir terjadi kondisi berikut:</p>
+<ol>
+<li>Mahasiswa diminta memberikan nama, email, nomor telepon, tanggal lahir, dan data aktivitas belajar saat membuat account.</li>
+<li>Privacy notice hanya menyebut “data digunakan untuk meningkatkan layanan” tanpa penjelasan lebih lanjut mengenai beberapa third-party processing.</li>
+<li>Tim marketing mengirim sebagian data user ke analytics/advertising vendor.</li>
+<li>Cloud provider menyimpan data pada infrastructure yang dikelola vendor, tetapi tim EduConnect tidak dapat menunjukkan pembagian responsibility secara jelas.</li>
+<li>Terjadi incident yang menyebabkan sebagian user tidak dapat mengakses account selama beberapa jam; tim belum memiliki timeline incident yang lengkap.</li>
+<li>Seorang user meminta penjelasan mengenai data apa yang dimiliki platform dan kepada siapa data tersebut dibagikan.</li>
+</ol>
+${callout("","Peran Anda","Bertindak sebagai <b>Digital Platform Governance Analyst</b>. Jangan langsung memutuskan siapa yang bersalah. Pisahkan <b>facts, unknowns, actor/role, data/system, applicable rule, evidence, risk, responsibility, dan recommended action</b>.")}
+<h3>Part A · Responsibility & Privacy Assessment</h3>
+<div class="tablewrap"><table>
+<tr><th>Kolom</th><th>Isi yang Diharapkan</th></tr>
+<tr><td>Issue / Activity</td><td>Processing, platform activity, vendor use, incident, atau user request yang dianalisis.</td></tr>
+<tr><td>Actor / Role</td><td>EduConnect, user, cloud/vendor, serta controller/processor role jika dapat ditentukan.</td></tr>
+<tr><td>Data / System</td><td>Data Pribadi atau Sistem Elektronik yang relevan.</td></tr>
+<tr><td>Applicable Rule</td><td>UU PDP, PP 71/2019, aturan PSE, contract/policy atau rule lain yang relevan.</td></tr>
+<tr><td>Evidence</td><td>Notice, contract, SLA/DPA, registration, data inventory, incident record, log/ticket, communication, dll.</td></tr>
+<tr><td>Risk</td><td>LOW / MEDIUM / HIGH disertai reasoning.</td></tr>
+<tr><td>Responsibility</td><td>Pihak yang memiliki obligation/control/action untuk issue tersebut.</td></tr>
+<tr><td>Recommendation</td><td>Action konkret sebelum issue dianggap selesai.</td></tr>
+</table></div>
+<h3>Part B · Pertanyaan Analisis</h3>
+<ol>
+<li>Apakah EduConnect relevan dianalisis sebagai PSE? Jelaskan fakta dan dasar regulasi yang perlu diperiksa.</li>
+<li>Data apa saja dalam case yang termasuk Data Pribadi dan mengapa data-flow mapping diperlukan?</li>
+<li>Bagaimana Anda menentukan peran EduConnect dan vendor sebagai Pengendali/Prosesor? Informasi apa yang masih perlu diverifikasi?</li>
+<li>Apa masalah governance dari privacy notice dan penggunaan analytics/advertising vendor pada case?</li>
+<li>Apakah penggunaan cloud provider memindahkan seluruh responsibility EduConnect? Jelaskan.</li>
+<li>Evidence apa yang harus segera dikumpulkan setelah incident dan sebelum memberikan kesimpulan?</li>
+<li>Apa rekomendasi prioritas Anda sebelum processing/vendor arrangement dilanjutkan?</li>
+</ol>
+<h3>Ketentuan Submission</h3>
+<ul>
+<li>Individual.</li><li>2–3 halaman, tidak termasuk references.</li>
+<li>Gunakan minimal <b>dua official Week 06 references</b> dan hubungkan dengan analisis.</li>
+<li>Format: <b>PDF</b>.</li>
+<li>Filename: <b>W06_NIM_Nama_PlatformPrivacyAssessment.pdf</b>.</li>
+<li>Jangan memasukkan personal data nyata, credentials, confidential documents, proprietary logs, atau data perusahaan ke dalam tugas.</li>
+</ul>
+<h3>Assessment Rubric</h3>
+<div class="tablewrap"><table>
+<tr><th>Kriteria</th><th>Bobot</th></tr>
+<tr><td>Identifikasi actor, role, system, dan data</td><td>20%</td></tr>
+<tr><td>Analisis PSE/platform & applicable regulation</td><td>20%</td></tr>
+<tr><td>Privacy & controller/processor analysis</td><td>25%</td></tr>
+<tr><td>Evidence, risk & responsibility reasoning</td><td>20%</td></tr>
+<tr><td>Recommendation & penggunaan official references</td><td>10%</td></tr>
+<tr><td>Struktur dan kualitas penulisan</td><td>5%</td></tr>
+<tr><th>Total</th><th>100%</th></tr>
+</table></div>
+${callout("warning","Sebelum submit","Pastikan setiap conclusion dapat ditelusuri: <b>FACT → ROLE → RULE → EVIDENCE → ANALYSIS → RISK → RESPONSIBILITY → ACTION.</b>")}
+`},
+
+{title:"References",html:()=>`
+${tags(["OFFICIAL SOURCES","REGULATIONS"])}
+<h2>14 · Week 06 References & Regulations</h2>
+<p>Gunakan official/primary sources. Jangan hanya menulis nomor UU; jelaskan relevansinya terhadap facts.</p>
+<div class="ref"><b>🇮🇩 UU No. 1 Tahun 2024 — Perubahan Kedua atas UU ITE</b><br><span class="small">Rujukan kerangka hukum ITE yang berlaku sesuai isu yang dianalisis.</span><br><a target="_blank" rel="noopener" href="https://peraturan.bpk.go.id/Details/274494/uu-no-1-tahun-2024">Buka rujukan resmi</a></div>
+<div class="ref"><b>🇮🇩 PP No. 71 Tahun 2019 — Penyelenggaraan Sistem dan Transaksi Elektronik</b><br><span class="small">Rujukan utama PSTE dan kewajiban penyelenggaraan sesuai scope.</span><br><a target="_blank" rel="noopener" href="https://peraturan.bpk.go.id/Details/122030/pp-no-71-tahun-2019">Buka rujukan resmi</a></div>
+<div class="ref"><b>🇮🇩 UU No. 27 Tahun 2022 — Pelindungan Data Pribadi</b><br><span class="small">Data Pribadi, hak Subjek Data Pribadi, processing, Pengendali, Prosesor, transfer, obligations, dan sanksi.</span><br><a target="_blank" rel="noopener" href="https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022">Buka rujukan resmi</a></div>
+<div class="ref"><b>🇮🇩 Permenkominfo No. 5 Tahun 2020 — PSE Lingkup Privat</b><br><span class="small">Baca bersama perubahan/status regulasi yang applicable.</span><br><a target="_blank" rel="noopener" href="https://jdih.komdigi.go.id/produk_hukum/view/id/759/t/peraturan%2Bmenteri%2Bkomunikasi%2Bdan%2Binformatika%2Bnomor%2B5%2Btahun%2B2020">Buka JDIH Kemkomdigi</a></div>
+${callout("","Pesan Utama","<b>Platform responsibility tidak ditentukan dari asumsi. Petakan service, actor, system, data, role, evidence, applicable rule, dan control—baru tentukan risk dan action.</b>")}
+<div class="callout law"><b>🏁 Week 06 Selesai</b>Anda siap melakukan <b>Digital Platform, PSE & Privacy Responsibility Assessment</b>.</div>
+`}
+]
+
+let page=0,answers={};
+const screen=document.getElementById('screen'),nav=document.getElementById('nav');
+const progressBar=document.getElementById('progressBar'),progressText=document.getElementById('progressText');
+const prev=document.getElementById('prev'),next=document.getElementById('next');
+
+pages.forEach((p,i)=>{
+ const b=document.createElement('button'); b.type='button'; b.className='navbtn';
+ b.textContent=`${i+1}. ${p.title}`;
+ b.addEventListener('click',()=>{page=i;render();window.scrollTo({top:0,behavior:'smooth'})});
+ nav.appendChild(b);
+});
+
+function bindQuiz(){
+ screen.querySelectorAll('.quiz').forEach(q=>{
+   const id=q.dataset.q, correct=Number(q.dataset.c), fb=q.querySelector('.feedback');
+   q.querySelectorAll('.option').forEach(btn=>{
+     if(answers[id]!==undefined){
+       btn.disabled=true;
+       if(Number(btn.dataset.a)===answers[id]) btn.classList.add('selected');
+       if(Number(btn.dataset.a)===correct) btn.classList.add('correct');
+       if(answers[id]!==correct && Number(btn.dataset.a)===answers[id]) btn.classList.add('wrong');
+       fb.classList.add('show');
+       fb.innerHTML=(answers[id]===correct?'<b>✓ Correct.</b> ':'<b>✗ Review this.</b> ')+q.querySelector('template').innerHTML;
+     }
+     btn.addEventListener('click',()=>{
+       if(answers[id]!==undefined)return;
+       answers[id]=Number(btn.dataset.a);
+       bindState();
+     });
+   });
+ });
+}
+function bindState(){render(false)}
+function updateScore(){
+ const el=document.getElementById('score'); if(!el)return;
+ const ids=Array.from({length:10},(_,i)=>'k'+(i+1));
+ const done=ids.filter(x=>answers[x]!==undefined).length;
+ const good=ids.filter(x=>answers[x]!==undefined && getCorrect(x)===answers[x]).length;
+ el.textContent=done===10
+ ? `Knowledge Check: ${good}/10 correct — ${good>=8?'Ready for the assignment.':'Review the theory before starting the assignment.'}`
+ : `Knowledge Check: ${done}/10 answered · ${good} correct so far`;
+}
+function getCorrect(id){
+ const map={k1:1,k2:1,k3:0,k4:0,k5:0,k6:1,k7:1,k8:1,k9:0,k10:0};
+ return map[id];
+}
+function render(scroll=true){
+ screen.innerHTML=pages[page].html();
+ [...nav.children].forEach((b,i)=>b.classList.toggle('active',i===page));
+ progressBar.style.width=((page+1)/pages.length*100)+'%';
+ progressText.textContent=`Bagian ${page+1} dari ${pages.length}`;
+ prev.disabled=page===0;
+ next.textContent=page===pages.length-1?'Complete ✓':'Lanjut →';
+ bindQuiz(); updateScore();
+ if(scroll) screen.focus?.();
+}
+prev.addEventListener('click',()=>{if(page>0){page--;render();window.scrollTo({top:0,behavior:'smooth'})}});
+next.addEventListener('click',()=>{if(page<pages.length-1){page++;render();window.scrollTo({top:0,behavior:'smooth'})}else{alert('Week 06 selesai. Anda siap mengerjakan Individual Assignment.')}});
+document.getElementById('restart').addEventListener('click',()=>{if(confirm('Mulai ulang modul dan hapus seluruh jawaban quiz?')){page=0;answers={};render();window.scrollTo({top:0,behavior:'smooth'})}});
+render();
+</script>
+</body>
+</html>
